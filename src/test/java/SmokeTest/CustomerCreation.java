@@ -5,19 +5,21 @@ import automation.pages.EmployeeDefaultPage;
 import automation.pages.LoginPage;
 import automation.utilities.ConfigurationReader;
 import automation.utilities.Driver;
+import automation.utilities.ReusableMethods;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 public class CustomerCreation {
+
 
     LoginPage loginPage = new LoginPage();
     EmployeeDefaultPage employeeDefaultPage = new EmployeeDefaultPage();
     CreateCustomerPage createCustomerPage = new CreateCustomerPage();
-
     @Test
-    public void createCustomerAsEmployee(){
+    public void createCustomerAsEmployee() throws IOException {
         Driver.getDriver().get(ConfigurationReader.getProperty("gmi_login_url"));
-
         loginPage.loginApplication("gino.wintheiser","%B6B*q1!TH");
         employeeDefaultPage.myOperationsDropdown.click();
         employeeDefaultPage.manageCustomers.click();
@@ -38,6 +40,8 @@ public class CustomerCreation {
         new Select(createCustomerPage.countryDropdown).selectByIndex(2);
         createCustomerPage.zelleEnrolledCheckbox.click();
         createCustomerPage.saveButton.click();
+
+        ReusableMethods.getScreenshot("CustomerCreated");
 
     }
 }

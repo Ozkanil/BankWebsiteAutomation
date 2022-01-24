@@ -26,6 +26,9 @@ public class LoginPage {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//span[.='Sign out']")
+    public WebElement signOut;
+
     public void loginApplication(String userName, String pass){
         loginDropdown.click();
         signInButton.click();
